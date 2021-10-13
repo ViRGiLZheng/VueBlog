@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,12 +8,21 @@
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import './style/base.scss';
+html{
+  height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+}
+#app {
+    height: 100%;
+}
 
 </style>
