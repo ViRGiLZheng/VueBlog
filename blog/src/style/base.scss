@@ -37,3 +37,14 @@ input {
     /*清除移动端默认的表单样式*/
     -webkit-appearance: none;
 }
+
+.svg-icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    fill: currentColor;
+    overflow: hidden;
+    -webkit-transition: font-size 0.25s ease-out 0s;
+    -moz-transition: font-size 0.25s ease-out 0s;
+    transition: font-size 0.25s ease-out 0s;
+}

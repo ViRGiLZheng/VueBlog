@@ -4,9 +4,14 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router/index'
 import VueRouter from 'vue-router'
+import IconSvg from "./components/SvgIcon.vue"; // svg组件
+import "./assets/icons/iconfont";
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
+Vue.config.productionTip = false;
+// 注册全局组件（register global）
+Vue.component("icon-svg", IconSvg);
 
 new Vue({
   router,
