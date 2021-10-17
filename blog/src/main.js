@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 import IconSvg from "./components/SvgIcon.vue"; // svg组件
 import "./assets/icons/iconfont";
 
+
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.config.productionTip = false;

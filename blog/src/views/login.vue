@@ -44,7 +44,7 @@ export default {
     return {
       ruleForm: {
         userName: "admin",
-        pwd: "admin",
+        pwd: "admin"
       },
       rules: {
         userName: [
@@ -57,6 +57,11 @@ export default {
       showDialog: false, // 显示dialog
       redirect: null // 回调地址
     };
+  },
+  methods: {
+    handleLogin() {
+      // this.$store.
+    }
   }
 };
 </script>
@@ -82,7 +87,7 @@ $light_gray: #eee;
     padding: 0.4666rem 0.4666rem 0.2rem 0.4666rem;
   }
 
-// 3个类选择器设定flex布局
+  // 3个类选择器设定flex布局
   .item {
     .el-form-item__content {
       display: flex;
@@ -96,7 +101,7 @@ $light_gray: #eee;
 
   .title {
     font-size: 26px;
-    color:$light_gray;
+    color: $light_gray;
     margin: 0 auto 0.5333rem auto;
     text-align: center;
     font-weight: bold;
