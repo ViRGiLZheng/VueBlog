@@ -1,18 +1,10 @@
-import axios from "../../utils/axios";
-// 获取信息
-export function userInfo(id, token) {
-    return axios({
-        url: "/admin/auth/login/userInfo",
-        method: "get",
-        params: { id, token }
-    });
-}
+import axios from "../util/axios";
 
 export function loginName(userName, pwd) {
     return axios({
-        url: "/admin/auth/login/index",
+        url: "/loginCheck",
         method: "post",
-        data: { userName, pwd }
+        data:{ userName, pwd }
     });
 }
 

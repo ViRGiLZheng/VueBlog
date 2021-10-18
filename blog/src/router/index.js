@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router';
-import ROUTER_MODE from '../config/config'
+// import ROUTE_MODE from '../config/config'
 import login from '../views/login.vue'
 import NProgress from "nprogress"; // Progress 进度条
 import "nprogress/nprogress.css"; // Progress 进度条样式
@@ -13,8 +13,8 @@ const routes = [
 ]
 
 let router = new VueRouter({
-    mode: ROUTER_MODE,
-    routes: routes,
+    // mode: ROUTE_MODE,
+    routes,
 })
 
 // register global progress.
@@ -23,7 +23,6 @@ router.beforeEach((to, from, next)=>{
     NProgress.start();
     if (whiteList.indexOf(to.path) !== -1) {
         next();
-        NProgress.down();
         return;
     }
 
@@ -40,7 +39,6 @@ router.beforeEach((to, from, next)=>{
             query: { redirect: redirect }
         });
     }); // 否则全部重定向到登录页
-    NProgress.down();
 });
 
 //动画效果一致性
