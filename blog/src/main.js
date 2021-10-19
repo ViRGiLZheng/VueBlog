@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 import store from './store/index';
 import IconSvg from "./components/SvgIcon.vue"; // svg组件
 import "./assets/icons/iconfont";
-import "./mock/index"; // 模拟数据
+import "./mock"; // 模拟数据
 
 
 Vue.use(ElementUI);

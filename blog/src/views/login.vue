@@ -33,8 +33,6 @@
 
 <script>
 import axios from "../util/axios";
-import { resolve } from 'url';
-import { rejects } from 'assert';
 
 export function loginName(userName, pwd) {
   return axios({
@@ -72,21 +70,27 @@ export default {
   },
   methods: {
     handleLogin() {
-    //  new Promise(resolve,rejects){ loginName(this.ruleForm.userName,this.ruleForm.pwd)
-    //  .then(console.log('winner');resolve(Response))}
-        // .then(console.log("winenr"))
-        // .catch(error => {
-        //   console.log(error);
-        // });
-      //   this.$store
-      //     .dispatch("loginName", this.ruleForm)
-      //     .then(response => {
-      //       console.log(response);
-      //     })
-      //     .catch((error) => {
-      //       console.log(error);
-      //     });
-      // }
+      let that = this;
+      this.$store
+        .dispatch("loginName", this.ruleForm)
+        .then(response => {
+          if (response.code) {
+            this.$message.error(response.message);
+            return;
+          }
+          let path = "/";
+          if (this.redirect) {
+            path = this.redirect;
+          }
+          if (that.$store.getters.pass) {
+            this.$router.push({
+              path: path
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

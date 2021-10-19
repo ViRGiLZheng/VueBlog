@@ -6,12 +6,15 @@ import * as types from "../mutation-type";
 const getters = {
     userName: state => state.userName,
     pwd: state => state.pwd,
+    pass:state=>state.pass,
 };
 
 
 // initial state
 const state = {
     userName: "", // 昵称
+    pwd:String,
+    pass:false
 };
 
 // actions
@@ -21,28 +24,32 @@ const actions = {
         const userName = userInfo.userName ? userInfo.userName.trim() : "";
         const pwd = userInfo.pwd ? userInfo.pwd : "";
         return new Promise((resolve, reject) => {
-            loginName(userName, pwd).then(response=>{
+            loginName(userName, pwd).then(response => {
                 let data = response.data
-            commit(types.LOGIN_CHECK, data.pass)
-            resolve(response)} ).catch(
-              error=>{console.error() ;reject(error);})
-                      // .then(response => {
-        //     if (response.code) {
-        //         Message({
-        //             message: response.message,
-        //             type: "error",
-        //             duration: 5 * 1000
-        //         });
-        //     } else {
-        //  let data = response.data;
-        //  commit(types.LOGIN_CHECK,data.pass)
-        //     }
-        //     resolve(response);
-        // })
-        // .catch(error => {
-        //     reject(error);
-        // });
-    });
+                commit(types.LOGIN_CHECK,data.pass)
+                resolve(response)
+            })
+                .catch(error => {
+                    console.log(error);
+                    reject(error);
+                })
+            // .then(response => {
+            //     if (response.code) {
+            //         Message({
+            //             message: response.message,
+            //             type: "error",
+            //             duration: 5 * 1000
+            //         });
+            //     } else {
+            //  let data = response.data;
+            //  commit(types.LOGIN_CHECK,data.pass)
+            //     }
+            //     resolve(response);
+            // })
+            // .catch(error => {
+            //     reject(error);
+            // });
+        });
     }
 }
 

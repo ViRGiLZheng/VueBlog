@@ -1,12 +1,17 @@
 import axios from 'axios';
-import BASE_URL from '../config/config';
+import {BASE_URL} from '../config/config';
 // import store from '../store/index'
 //  import router from '../router/index';
 
-//创建实例
+// //创建实例
+// const service = axios.create({
+//     baseURL: BASE_URL, // api的base_url
+//     timeout:5000
+// })
+
 const service = axios.create({
-    baseURL: BASE_URL, // api的base_url
-    timeout:5000
+    baseURL: BASE_URL,//process.env.VUE_APP_BASE_API,
+    timeout: 5000 // request timeout
 })
 
 // service.interceptors.request.use()
