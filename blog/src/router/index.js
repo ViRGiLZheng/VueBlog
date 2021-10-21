@@ -4,6 +4,7 @@ import login from '../views/login.vue';
 import Home from '../views/home/index.vue'
 import NProgress from "nprogress"; // Progress 进度条
 import "nprogress/nprogress.css"; // Progress 进度条样式
+import article from '../views/blog/article.vue'
 
 const err401 = r =>
     require.ensure([], () => r(require("../views/error/err401.vue")), "home");
@@ -40,8 +41,7 @@ const routes = [
     },
     {
         path: "/",
-        component:Home,
-        // redirect: "/home",
+        component: Home,
         name: "首页",
         hidden: true
     }
@@ -72,9 +72,6 @@ router.beforeEach((to, from, next) => {
     next({ path: "/login" });
     NProgress.done(); // router在hash模式下 手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
     return;
-
-
-
 });
 
 //动画效果一致性
@@ -82,3 +79,33 @@ router.afterEach(() => {
     NProgress.done();
 });
 export default router
+
+
+const siderMap = [
+    {
+        path: "/app/Java",
+        redirect: "/app/Java",
+        component: Home,
+        name: "Java",
+        // noDropdown: true,
+        children:
+            [
+                {
+                    path: "class",
+                    component: article,
+                    name: "类",
+                },
+                {
+                    path: "class2",
+                    component: article,
+                    name: "对象",
+                },
+                {
+                    path: "class3",
+                    component: article,
+                    name: "JS",
+                }
+            ]
+    }
+]
+export { siderMap }

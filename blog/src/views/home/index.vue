@@ -1,11 +1,11 @@
 <template>
     <el-container class="wrapper">
-        <el-scrollbar>
-            <div>
-                <span>VRzheng博客</span>
+        <el-scrollbar class="container-left" wrap-class="container-left-wrap"  :class="{'slide-hide': isCollapse, 'slide-in-left': menuShow}">
+            <div class="logo">
+                <span style="width:200px;font-weight:bold">VRzheng Blog</span>
             </div>
             <el-menu>
- <sidebar-item v-for="item in routers" :key="item.path" :item='item' ></sidebar-item>
+              <sidebar-item v-for="item in titles" :key="item.id" :item='item' ></sidebar-item>
             </el-menu>
         </el-scrollbar>
 
@@ -23,7 +23,7 @@
                         <span></span>
                     </div> -->
                 </div>
-                <div class="header-tabs-box">
+                <!-- <div class="header-tabs-box">
                     <el-breadcrumb class="app-levelbar" separator="/">
                         <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path">
                         <span v-if='item.redirect==="noredirect"||index==levelList.length-1'
@@ -31,9 +31,9 @@
                             <router-link v-else :to="item.redirect||item.path">{{item.name}}</router-link>
                         </el-breadcrumb-item>
                     </el-breadcrumb>
-                </div>
+                </div> -->
 
-                <div class="header-right">
+                <!-- <div class="header-right">
                     <el-dropdown trigger="click">
                         <span>{{username}}<i class="el-icon-arrow-down el-icon--right"></i></span>
                         <el-dropdown-menu slot="dropdown">
@@ -42,7 +42,7 @@
                             <el-dropdown-item disabled divided>主题切换</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
-                </div>
+                </div> -->
                 
                 <!--新增界面-->
                 <el-dialog title="修改密码"  width="85%" top="5vh">
@@ -64,7 +64,9 @@
                 </el-dialog>
             </el-header>
             <!--遮板-->
-            <div class="main-mask"></div>
+            <div class="main-mask"
+                 v-show="menuShow"
+                 @click="menuShow = !menuShow"></div>
 
             <el-main class="main">
                 <transition name="move" mode="out-in">
@@ -78,8 +80,20 @@
 <script>
 import SidebarItem from "./SidebarItem.vue";
 export default {
+  data() {
+    return {
+      menuShow: false
+    };
+  },
   components: {
     SidebarItem
+  },
+  computed:{
+
+    titles:()=>{
+      this.$store.dispatch("getSiderMap").then()
+      return this.$store.getters.siderMaps;
+    }
   }
 };
 </script>
@@ -130,7 +144,6 @@ export default {
   height: 100%;
   overflow-y: hidden;
   background-color: #f5f7f9;
-  font-color: #000;
 }
 
 .container-box {
@@ -148,6 +161,15 @@ export default {
 }
 .container-left-wrap {
   overflow-x: hidden !important;
+}
+
+.header {
+  position: relative;
+  text-align: left;
+  font-size: 12px;
+  line-height: $header-height;
+  border-bottom: 1px solid #d8dce5;
+  background-color: #fff;
 }
 
 /*宽屏时出现*/
@@ -175,6 +197,18 @@ export default {
 }
 .slide-toggle-open {
   padding-top: 17px;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  line-height: 80px;
+  text-align: center;
+  color: #fff;
+  transition: display 0.7s ease-in-out;
+  span {
+    display: inline-block;
+  }
 }
 
 @media screen and (min-width: 768px) {

@@ -8,18 +8,10 @@ export function loginName(userName, pwd) {
     });
 }
 
-export function logout(uid, token) {
+export function getSiderMap(){
     return axios({
-        url: "/admin/auth/login/out",
-        method: "post",
-        data: { uid, token }
-    });
-}
-
-export function password(data) {
-    return axios({
-        url: "/admin/auth/login/password",
-        method: "post",
-        data: data
-    });
+        url:'/getSiderMap',
+        method:"post",
+        data:{}
+    })
 }

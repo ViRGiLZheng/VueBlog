@@ -83,7 +83,7 @@ export default {
             path = this.redirect;
           }
           if (that.$store.getters.pass) {
-            this.$router.push({
+            that.$router.push({
               path: path
             });
           }
