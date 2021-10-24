@@ -44,13 +44,45 @@ const routes = [
         component: Home,
         name: "首页",
         hidden: true
-    }
+    },
 ]
+
+ export const siderMaps = {
+    path: "/app/Java",
+    redirect: "/app/Java",
+    component: Home,
+    hidden: false,
+    name: "Java",
+    // noDropdown: true,
+    children:
+        [
+            {
+                path: "class",
+                component: article,
+                name: "类",
+            },
+            {
+                path: "class2",
+                component: article,
+                name: "对象",
+            },
+            {
+                path: "class3",
+                component: article,
+                name: "JS",
+            }
+        ]
+}
+
+
 
 let router = new VueRouter({
     // mode: ROUTE_MODE,
     routes,
 })
+
+
+router.addRoute(siderMaps);
 
 // register global progress.
 const whiteList = ["/login", "/401", "/404", "/500"]; // 不重定向白名单
@@ -62,11 +94,9 @@ router.beforeEach((to, from, next) => {
     }
 
     if (router.app.$options.store.state.login.pass) {
-        if (to.path === "/") {
             next();
             NProgress.done(); // router在hash模式下 手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
             return;
-        }
     }
 
     next({ path: "/login" });
@@ -80,32 +110,3 @@ router.afterEach(() => {
 });
 export default router
 
-
-const siderMap = [
-    {
-        path: "/app/Java",
-        redirect: "/app/Java",
-        component: Home,
-        name: "Java",
-        // noDropdown: true,
-        children:
-            [
-                {
-                    path: "class",
-                    component: article,
-                    name: "类",
-                },
-                {
-                    path: "class2",
-                    component: article,
-                    name: "对象",
-                },
-                {
-                    path: "class3",
-                    component: article,
-                    name: "JS",
-                }
-            ]
-    }
-]
-export { siderMap }

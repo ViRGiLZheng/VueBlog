@@ -7,11 +7,3 @@ export function loginName(userName, pwd) {
         data:{ userName, pwd }
     });
 }
-
-export function getSiderMap(){
-    return axios({
-        url:'/getSiderMap',
-        method:"post",
-        data:{}
-    })
-}

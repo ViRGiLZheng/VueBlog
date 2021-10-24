@@ -1,73 +1,39 @@
 <template>
     <el-container class="wrapper">
-        <el-scrollbar class="container-left" wrap-class="container-left-wrap"  :class="{'slide-hide': isCollapse, 'slide-in-left': menuShow}">
+        <el-scrollbar class="container-left" wrap-class="container-left-wrap" :class="{'slide-hide': isCollapse, 'slide-in-left': menuShow}">
             <div class="logo">
                 <span style="width:200px;font-weight:bold">VRzheng Blog</span>
             </div>
-            <el-menu>
-              <sidebar-item v-for="item in titles" :key="item.id" :item='item' ></sidebar-item>
+            <el-menu
+            class="menu"
+            style="border: none;"
+            text-color="rgb(191, 203, 217)"
+            background-color="rgb(48, 65, 86)"
+            active-text-color="rgb(64, 158, 255)">
+              <sidebar-item  :item='siderMaps' ></sidebar-item>
             </el-menu>
         </el-scrollbar>
 
-        <el-container>
+        <el-container class="container-box" v-bind:class="{'slide-hide': isCollapse, 'slide-in-left': menuShow}">
  <el-header class="header">
                 <div class="header-left">
-                    <!-- <div class="header-toggle" @click="menuShow = !menuShow; showSideBar()">
+                 <div class="header-toggle" @click="menuShow = !menuShow; ">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
-                    <div class="slide-toggle" :class="{'slide-toggle-open': isCollapse}" @click="toggleSideBar">
+                    <div class="slide-toggle" :class="{'slide-toggle-open': isCollapse}" @click="isCollapse = !isCollapse;">
                         <span></span>
                         <span></span>
                         <span></span>
-                    </div> -->
+                    </div>
                 </div>
-                <!-- <div class="header-tabs-box">
-                    <el-breadcrumb class="app-levelbar" separator="/">
-                        <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path">
-                        <span v-if='item.redirect==="noredirect"||index==levelList.length-1'
-                              class="no-redirect">{{item.name}}</span>
-                            <router-link v-else :to="item.redirect||item.path">{{item.name}}</router-link>
-                        </el-breadcrumb-item>
-                    </el-breadcrumb>
-                </div> -->
 
-                <!-- <div class="header-right">
-                    <el-dropdown trigger="click">
-                        <span>{{username}}<i class="el-icon-arrow-down el-icon--right"></i></span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item><span @click="handlePassword">修改密码</span></el-dropdown-item>
-                            <el-dropdown-item><span @click="loginOut">退出登录</span></el-dropdown-item>
-                            <el-dropdown-item disabled divided>主题切换</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </div> -->
-                
-                <!--新增界面-->
-                <el-dialog title="修改密码"  width="85%" top="5vh">
-                    <el-form >
-                        <!-- <el-form-item label="原始密码" prop="old_password">
-                            <el-input type="password" v-model="passwordFormData.old_password" auto-complete="off"></el-input>
-                        </el-form-item>
-                        <el-form-item label="新密码" prop="new_password">
-                            <el-input type="password" v-model="passwordFormData.new_password" auto-complete="off"></el-input>
-                        </el-form-item>
-                        <el-form-item label="确认密码" prop="check_new_password">
-                            <el-input type="password" v-model="passwordFormData.check_new_password" auto-complete="off"></el-input>
-                        </el-form-item> -->
-                    </el-form>
-                    <!-- <div slot="footer" class="dialog-footer">
-                        <el-button @click.native="passwordFormVisible = !passwordFormVisible">取消</el-button>
-                        <el-button type="primary" @click.native="addSubmit('passwordFormData')" :loading="passwordLoading">提交</el-button>
-                    </div> -->
-                </el-dialog>
             </el-header>
             <!--遮板-->
             <div class="main-mask"
                  v-show="menuShow"
                  @click="menuShow = !menuShow"></div>
-
             <el-main class="main">
                 <transition name="move" mode="out-in">
                     <router-view></router-view>
@@ -79,21 +45,21 @@
 
 <script>
 import SidebarItem from "./SidebarItem.vue";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      menuShow: false
+      menuShow: false,
+      isCollapse: true
     };
   },
   components: {
     SidebarItem
   },
-  computed:{
-
-    titles:()=>{
-      this.$store.dispatch("getSiderMap").then()
-      return this.$store.getters.siderMaps;
-    }
+  computed: {
+    ...mapGetters({
+      siderMaps: "siderMaps"
+    })
   }
 };
 </script>
@@ -159,6 +125,7 @@ export default {
   height: 100%;
   flex: 0 0 auto;
 }
+
 .container-left-wrap {
   overflow-x: hidden !important;
 }

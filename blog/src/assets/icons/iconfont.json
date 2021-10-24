@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18267926",
+      "name": "接口配置",
+      "font_class": "jiekoupeizhi",
+      "unicode": "e990",
+      "unicode_decimal": 59792
+    },
+    {
+      "icon_id": "18267906",
+      "name": "底层架构",
+      "font_class": "dicengjiagou",
+      "unicode": "e98c",
+      "unicode_decimal": 59788
+    },
+    {
+      "icon_id": "18267969",
+      "name": "应用场景",
+      "font_class": "yingyongchangjing",
+      "unicode": "e99c",
+      "unicode_decimal": 59804
+    },
+    {
+      "icon_id": "18267974",
+      "name": "文档",
+      "font_class": "wendang",
+      "unicode": "e99d",
+      "unicode_decimal": 59805
+    },
+    {
+      "icon_id": "18267975",
+      "name": "远程穿透",
+      "font_class": "yuanchengchuantou",
+      "unicode": "e99f",
+      "unicode_decimal": 59807
+    },
+    {
       "icon_id": "18267970",
       "name": "隐私保护",
       "font_class": "yinsibaohu",

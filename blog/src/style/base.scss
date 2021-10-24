@@ -1,5 +1,7 @@
 /*          reset css       */
-*, ::before, ::after {
+*,
+::before,
+::after {
     /*选择所有标签*/
     margin: 0;
     padding: 0;
@@ -22,12 +24,14 @@ body {
 
 a {
     text-decoration: none;
+
     &:hover {
         text-decoration: none;
     }
 }
 
-ul, ol {
+ul,
+ol {
     list-style: none;
 }
 
@@ -47,4 +51,76 @@ input {
     -webkit-transition: font-size 0.25s ease-out 0s;
     -moz-transition: font-size 0.25s ease-out 0s;
     transition: font-size 0.25s ease-out 0s;
+}
+
+@media screen and (max-width: 768px) {
+    .query-form-item.el-form-item {
+        display: block !important;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .query-form-item .el-form-item__content {
+        width: 100%;
+
+        .el-select {
+            width: 100%;
+        }
+    }
+
+    .el-dialog {
+        width: 80%;
+    }
+
+    .el-message {
+        min-width: 70% !important;
+    }
+}
+
+
+.container-left {
+    .el-menu .el-menu-item {
+        &:hover {
+            background-color: #263445 !important;
+        }
+    }
+}
+
+// 左侧导航栏的折叠后的样式
+.el-menu--collapse {
+    .el-submenu {
+        .el-submenu__title {
+            span {
+                height: 0;
+                width: 0;
+                overflow: hidden;
+                visibility: hidden;
+                display: inline-block;
+            }
+
+            .el-submenu__icon-arrow {
+                display: none;
+            }
+        }
+    }
+
+    .el-menu-item {
+        .el-tooltip {
+            span {
+                height: 0;
+                width: 0;
+                overflow: hidden;
+                visibility: hidden;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.el-menu--vertical {
+    .el-menu-item {
+        &:hover {
+            background-color: #263455 !important;
+        }
+    }
 }
